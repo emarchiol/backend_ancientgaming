@@ -1,3 +1,4 @@
+import { BreakingChangeType } from "graphql";
 import { Bet } from "../../interfaces/bet";
 
 // Mocked data-set.
@@ -31,4 +32,15 @@ export function getBetById(betId: number): Bet {
 
 export function getBestBetPerUser(limit: number): Bet[] {
     return [];
+}
+
+export function addBet(userId: number, betAmount: number, chance: number): Bet {
+    return {
+        id: 3,
+        betAmount: betAmount,
+        chance: chance,
+        payout: 0,
+        userId: userId,
+        win: false
+    };
 }

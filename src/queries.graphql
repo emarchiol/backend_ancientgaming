@@ -10,6 +10,10 @@ type Query {
   getBestBetPerUser(limit: Int!): [Bet!]
 }
 
+type Mutation {
+  createBet(userId: Int, betAmount: Float, chance: Float): Bet
+}
+
 type Query {
   getUser(id: ID!): User
 }
