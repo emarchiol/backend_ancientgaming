@@ -1,33 +1,33 @@
-import { BreakingChangeType } from "graphql";
+require("dotenv").config();
 import { Bet } from "../../interfaces/bet";
+import { Pool, QueryResult } from "pg";
+import { selectBetByIdQuery, selectBetsQuery } from "./sql-queries";
 
-// Mocked data-set.
-const bets = [
-    {
-        id: 1,
-        userId: 1,
-        betAmount: 1200000,
-        chance: 20,
-        payout: 3,
-        win: true
-    }, {
-        id: 2,
-        userId: 2,
-        betAmount: 12.25,
-        chance: 10,
-        payout: 1.5,
-        win: false
-    },
-];
+const pool = new Pool({
+    user: process.env.USERNAME,
+    host: process.env.ENDPOINT,
+    database: process.env.DATABASE,
+    password: process.env.PASSWORD,
+    port: parseInt(process.env.PORT as string),
+});
 
-
-export function getAllBets(): Bet[] {
-    return bets;
+export async function getAllBets(): Promise<Bet[]> {
+    try {
+        const result: QueryResult<Bet> = await pool.query(selectBetsQuery);
+        return result.rows;
+    } catch (err) {
+        throw (err);
+    }
 }
 
 
-export function getBetById(betId: number): Bet {
-    return bets[betId];
+export async function getBetById(betId: number): Promise<Bet> {
+    try {
+        const result: QueryResult<Bet> = await pool.query(selectBetByIdQuery, [betId]);
+        return result.rows[0];
+    } catch (err) {
+        throw (err);
+    }
 }
 
 export function getBestBetPerUser(limit: number): Bet[] {

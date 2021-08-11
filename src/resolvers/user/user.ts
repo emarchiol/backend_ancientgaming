@@ -2,7 +2,7 @@ import { getAllUsers, getUserById } from "./data-source";
 
 export const userResolver = {
     Query: {
-        getUserList: () => getAllUsers,
-        getUser: (_: any, {id}: any, ___: any) => getUserById(id)
+        getUserList: async () => await getAllUsers(),
+        getUser: async (_: any, {id}: any, ___: any) => await getUserById(id)
     },
   };

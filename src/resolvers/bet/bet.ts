@@ -3,8 +3,8 @@ import { addBet, getAllBets, getBestBetPerUser, getBetById } from "./data-source
 
 export const betResolver = {
     Query: {
-        getBetList: () => getAllBets,
-        getBet: (_: any, {id}: any, ___: any ) => getBetById(id),
+        getBetList: async () => await getAllBets(),
+        getBet: async (_: any, {id}: any, ___: any ) => await getBetById(id),
         getBestBetPerUser: (_: any, {limit}: any, ___: any) => getBestBetPerUser(limit)
     },
     Mutation: {

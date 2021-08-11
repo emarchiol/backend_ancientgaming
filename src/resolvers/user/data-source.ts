@@ -1,23 +1,30 @@
+require("dotenv").config();
+import { Pool, QueryResult } from "pg";
 import { User } from "../../interfaces/user";
+import { selectUserByIdQuery, selectUsersQuery } from "./sql-queries";
 
-// Mocked data-set.
-const users = [
-    {
-        id: 1,
-        name: 'Show me the money guy',
-        balance: 1200000
-    }, {
-        id: 2,
-        name: 'Broke guy',
-        balance: 12.25
-    },
-];
+const pool = new Pool({
+    user: process.env.USERNAME,
+    host: process.env.ENDPOINT,
+    database: process.env.DATABASE,
+    password: process.env.PASSWORD,
+    port: parseInt(process.env.PORT as string),
+});
 
-export function getAllUsers(): User[] {
-    return users;
+export async function getAllUsers(): Promise<User[]> {
+    try {
+        const result: QueryResult<User> = await pool.query(selectUsersQuery);
+        return result.rows;
+    } catch (err) {
+        throw (err);
+    }
 }
 
-
-export function getUserById(userId: number): User {
-    return users[userId];
+export async function getUserById(userId: number): Promise<User> {
+    try {
+        const result: QueryResult<User> = await pool.query(selectUserByIdQuery, [userId]);
+        return result.rows[0];
+    } catch (err) {
+        throw (err);
+    }
 }

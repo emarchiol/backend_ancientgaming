@@ -3,7 +3,7 @@ CREATE TABLE public.users
 (
     id integer NOT NULL,
     name character varying(50) COLLATE pg_catalog."default",
-    balance money,
+    balance real,
     CONSTRAINT users_pkey PRIMARY KEY (id)
 )
 
@@ -17,9 +17,9 @@ CREATE TABLE public.bets
 (
     id integer NOT NULL,
     "userId" integer NOT NULL,
-    "betAmount" money,
+    "betAmount" real,
     chance real,
-    payout money,
+    payout real,
     win boolean,
     CONSTRAINT bets_pkey PRIMARY KEY (id),
     CONSTRAINT "userId_fk" FOREIGN KEY ("userId")
