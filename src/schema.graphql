@@ -1,0 +1,22 @@
+type User {
+  id: Int
+  name: String
+  balance: Float
+}
+
+type Query {
+  getUserList: [User]
+}
+
+type Bet {
+  id: Int
+  userId: Int
+  betAmount: Float
+  chance: Float
+  payout: Float
+  win: Boolean
+}
+
+type Query {
+  getBetList: [Bet]
+}
