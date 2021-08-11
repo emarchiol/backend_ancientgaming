@@ -1,3 +1,5 @@
+import { User } from "../../interfaces/user";
+
 // Mocked data-set.
 const users = [
     {
@@ -11,8 +13,11 @@ const users = [
     },
 ];
 
-export const userResolver = {
-    Query: {
-        getUserList: () => users,
-    },
-  };
+export function getAllUsers(): User[] {
+    return users;
+}
+
+
+export function getUserById(userId: number): User {
+    return users[userId];
+}

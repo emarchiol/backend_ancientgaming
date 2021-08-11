@@ -1,0 +1,11 @@
+type Query {
+  getBetList: [Bet]
+}
+
+type Query {
+  getUser(id: ID!): User
+}
+
+type Query {
+  getUserList: [User]
+}

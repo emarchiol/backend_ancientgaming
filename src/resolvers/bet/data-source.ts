@@ -1,3 +1,5 @@
+import { Bet } from "../../interfaces/bet";
+
 // Mocked data-set.
 const bets = [
     {
@@ -17,8 +19,12 @@ const bets = [
     },
 ];
 
-export const betResolver = {
-    Query: {
-        getBetList: () => bets,
-    },
-  };
+
+export function getAllBets(): Bet[] {
+    return bets;
+}
+
+
+export function getBetById(betId: number): Bet {
+    return bets[betId];
+}

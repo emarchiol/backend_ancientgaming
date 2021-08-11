@@ -4,10 +4,6 @@ type User {
   balance: Float
 }
 
-type Query {
-  getUserList: [User]
-}
-
 type Bet {
   id: Int
   userId: Int
@@ -15,8 +11,4 @@ type Bet {
   chance: Float
   payout: Float
   win: Boolean
-}
-
-type Query {
-  getBetList: [Bet]
 }
