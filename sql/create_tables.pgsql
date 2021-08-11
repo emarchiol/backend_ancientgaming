@@ -1,7 +1,7 @@
 -- Users table
 CREATE TABLE public.users
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     name character varying(50) COLLATE pg_catalog."default",
     balance real,
     CONSTRAINT users_pkey PRIMARY KEY (id)
@@ -15,7 +15,7 @@ ALTER TABLE public.users
 -- Bets table
 CREATE TABLE public.bets
 (
-    id integer NOT NULL,
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 2147483647 CACHE 1 ),
     "userId" integer NOT NULL,
     "betAmount" real,
     chance real,
@@ -26,7 +26,6 @@ CREATE TABLE public.bets
         REFERENCES public.users (id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE CASCADE
-        NOT VALID
 )
 
 TABLESPACE pg_default;

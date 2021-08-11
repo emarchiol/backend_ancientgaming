@@ -8,6 +8,6 @@ export const betResolver = {
         getBestBetPerUser: (_: any, {limit}: any, ___: any) => getBestBetPerUser(limit)
     },
     Mutation: {
-        createBet: (_: any, newBet: Bet, ___: any) => addBet(newBet.userId, newBet.betAmount, newBet.chance)
+        createBet: async (_: any, newBet: Bet, ___: any) => await addBet(newBet.userId, newBet.betAmount, newBet.chance)
     }
   };

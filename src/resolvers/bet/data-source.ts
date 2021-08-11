@@ -1,7 +1,7 @@
 require("dotenv").config();
 import { Bet } from "../../interfaces/bet";
 import { Pool, QueryResult } from "pg";
-import { selectBetByIdQuery, selectBetsQuery } from "./sql-queries";
+import { insertBetQuery, selectBetByIdQuery, selectBetsQuery } from "./sql-queries";
 
 const pool = new Pool({
     user: process.env.USERNAME,
@@ -34,13 +34,11 @@ export function getBestBetPerUser(limit: number): Bet[] {
     return [];
 }
 
-export function addBet(userId: number, betAmount: number, chance: number): Bet {
-    return {
-        id: 3,
-        betAmount: betAmount,
-        chance: chance,
-        payout: 0,
-        userId: userId,
-        win: false
-    };
+export async function addBet(userId: number, betAmount: number, chance: number): Promise<Bet> {
+    try {
+        const result: QueryResult<Bet> = await pool.query(insertBetQuery, [userId, betAmount, chance]);
+        return result.rows[0];
+    } catch (err) {
+        throw (err);
+    }
 }
