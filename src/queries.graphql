@@ -3,6 +3,14 @@ type Query {
 }
 
 type Query {
+  getBet(id: ID!): Bet
+}
+
+type Query {
+  getBestBetPerUser(limit: Int!): [Bet!]
+}
+
+type Query {
   getUser(id: ID!): User
 }
 

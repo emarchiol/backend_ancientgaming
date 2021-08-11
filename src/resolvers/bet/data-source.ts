@@ -28,3 +28,7 @@ export function getAllBets(): Bet[] {
 export function getBetById(betId: number): Bet {
     return bets[betId];
 }
+
+export function getBestBetPerUser(limit: number): Bet[] {
+    return [];
+}
