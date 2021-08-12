@@ -14,13 +14,13 @@ INSERT INTO public.users(
 
 -- Bets inserts
 INSERT INTO public.bets(
-	"userId", "betAmount", chance, payout)
-	VALUES (1, 10000, 5, 3.5);
+	"userId", "betAmount", chance, payout, win)
+	VALUES (1, 10000, 5, 3.5, true);
 
 INSERT INTO public.bets(
-	"userId", "betAmount", chance, payout)
-	VALUES (3, 200, 60, 3.6);
+	"userId", "betAmount", chance, payout, win)
+	VALUES (3, 200, 60, 3.6, false);
 
 INSERT INTO public.bets(
-	"userId", "betAmount", chance, payout)
-	VALUES (2, 5.2, 92.5, 1.1);
+	"userId", "betAmount", chance, payout, win)
+	VALUES (2, 5.2, 92.5, 1.1, true);
