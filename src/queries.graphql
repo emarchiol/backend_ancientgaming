@@ -1,23 +1,41 @@
 type Query {
+"""
+ Retrieve all bets in the system.
+"""
   getBetList: [Bet]
 }
 
 type Query {
+"""
+ Get a specific bet from its id. 
+"""
   getBet(id: ID!): Bet
 }
 
 type Query {
+"""
+ Retrieve the best bet per each user in the system, limiting the amount of result returned by the parameter 'limit'.
+"""
   getBestBetPerUser(limit: Int!): [Bet!]
 }
 
 type Mutation {
+"""
+ Creates a new bet for a specific user.
+"""
   createBet(userId: Int, betAmount: Float, chance: Float, payout: Float): Bet
 }
 
 type Query {
+"""
+ Get a specific user from its id.
+"""
   getUser(id: ID!): User
 }
 
 type Query {
+"""
+ Retrieve all users in the system.
+"""
   getUserList: [User]
 }

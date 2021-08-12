@@ -1,14 +1,35 @@
+"""
+The user's model for storing user information.
+"""
 type User {
+"""
+Unique Identifier.
+"""
   id: Int
+"""
+The legal name of the user.
+"""
   name: String
+"""
+The amount of currency the user has in its wallet.
+"""
   balance: Float
 }
 
+"""
+ The bet's model for storing bet information.
+"""
 type Bet {
+"""Unique Identifier."""
   id: Int
+  """User unique Identifier."""
   userId: Int
+  """The amount of currency to be deducted from the user balance for the bet."""
   betAmount: Float
+  """The chance of win in percentage, 0-100."""
   chance: Float
+  """The amount that the bet will pay back if it's a win."""
   payout: Float
+  """The result of the bet."""
   win: Boolean
 }
