@@ -1,15 +1,7 @@
-require("dotenv").config();
-import { Pool, QueryResult } from "pg";
+import { QueryResult } from "pg";
+import { pool } from "../..";
 import { User } from "../../interfaces/user";
 import { selectUserByIdQuery, selectUsersQuery } from "./sql-queries";
-
-const pool = new Pool({
-    user: process.env.USERNAME,
-    host: process.env.ENDPOINT,
-    database: process.env.DATABASE,
-    password: process.env.PASSWORD,
-    port: parseInt(process.env.PORT as string),
-});
 
 export async function getAllUsers(): Promise<User[]> {
     try {
